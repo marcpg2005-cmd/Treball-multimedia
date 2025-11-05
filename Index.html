@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marc Prieto Garcia — Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#languages">Languages</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="section fade-in">
+      <div class="intro">
+        <h1>Marc Prieto Garcia</h1>
+        <h2>University Student — Video Game Design and Development</h2>
+        <p>I’m a proactive and organized professional with a positive attitude, eager to face new challenges and learn continuously. I enjoy solving problems efficiently and improving processes to achieve the best results.</p>
+        <p><strong>Age:</strong> 20 years old</p>
+        <a href="#contact" class="btn">Contact Me</a>
+      </div>
+    </section>
+
+    <section id="experience" class="section fade-in">
+      <h2>Experience</h2>
+      <div class="card">
+        <h3>Waiter — Tu Rai! (2025 – Present)</h3>
+        <p>Providing professional customer service in a dynamic restaurant environment, ensuring client satisfaction, efficiency, and teamwork.</p>
+      </div>
+      <div class="card">
+        <h3>Waiter — Ca’l Virol (2022)</h3>
+        <p>Delivered quality service, maintained a positive atmosphere, and ensured excellent customer experiences.</p>
+      </div>
+      <div class="card">
+        <h3>Gardener — Arsy Jardiners (2024)</h3>
+        <p>Executed gardening projects and supported workflow optimization and maintenance planning.</p>
+      </div>
+      <div class="card">
+        <h3>Gardener — Garden Palautordera (2021)</h3>
+        <p>Performed detailed gardening and landscaping tasks with organization and responsibility.</p>
+      </div>
+    </section>
+
+    <section id="education" class="section fade-in">
+      <h2>Education</h2>
+      <div class="card">
+        <h3>Bachelor in Video Game Design and Development</h3>
+        <p>University of Girona (2023 – 2025)</p>
+        <p>Currently studying video game design and programming with a focus on creativity and problem-solving.</p>
+      </div>
+      <div class="card">
+        <h3>Technological Baccalaureate and Secondary Education</h3>
+        <p>Institut Reguissol (2017 – 2023)</p>
+        <p>Completed a strong foundation in technology, mathematics, and computer science.</p>
+      </div>
+    </section>
+
+    <section id="skills" class="section fade-in">
+      <h2>Skills</h2>
+      <div class="card">
+        <ul class="skills-list">
+          <li>Positive attitude</li>
+          <li>Respectful and team-oriented</li>
+          <li>Proactive decision-making</li>
+          <li>Problem-solving</li>
+          <li>Organized and efficient</li>
+          <li>Continuous learning</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="languages" class="section fade-in">
+      <h2>Languages</h2>
+      <div class="card">
+        <div class="lang-grid">
+          <div class="lang">
+            <h3>Catalan</h3>
+            <p>Native speaker</p>
+          </div>
+          <div class="lang">
+            <h3>Spanish</h3>
+            <p>Native speaker</p>
+          </div>
+          <div class="lang">
+            <h3>English</h3>
+            <p>B1 Level</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section fade-in">
+      <h2>Contact</h2>
+      <div class="card">
+        <p>If you’d like to get in touch, feel free to contact me by email or phone.</p>
+        <div class="contact-info">
+          <p><strong>Phone:</strong> +34 615 95 68 71</p>
+          <p><strong>Email:</strong> <a href="mailto:marcprietogarcia7@gmail.com">marcprietogarcia7@gmail.com</a></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© <span id="year"></span> Marc Prieto Garcia — All Rights Reserved</p>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) current = section.getAttribute('id');
+      });
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+      });
+    });
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+    fadeElements.forEach(el => observer.observe(el));
+    navLinks.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
